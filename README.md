@@ -14,7 +14,7 @@ Independent open-source project. Not affiliated with, endorsed or sponsored by A
 - **Remove ads and tracking** automatically: sponsored home-screen ads, usage logging, crash reports, Alexa shopping prompts, the Wi-Fi password uploader.
 - **More ads, promos and telemetry** (ticked by default, each can be unticked): the home-screen ad sync, sponsored previews, advertising ID, shopping, Fire TV Channels and Live tab, promo popups, content recognition, presence sensing and a dozen metrics services. Taken from the reboot-tested [CleanYourTV](https://github.com/Gathin23/cleanyourtv) lists for the Fire TV Stick 4K (2023, Fire OS 8) and 4K Max (2021, Fire OS 7). Packages a stick does not have are skipped.
 - **Remove apps you choose**: Amazon apps (Prime Video, Freevee, Music, Photos, Silk), rarely used Amazon services (Amazon Kids, Luna, tutorials, Ambient mode, Alexa extras) and apps you installed, each with a checkbox.
-- **Home screen**: Projectivy Launcher (recommended), any other launcher via Home on Fire, or keep Amazon's.
+- **Home screen**: Projectivy Launcher (recommended), any other launcher via Home on Fire, or keep Amazon's. The app also grants the launcher the "display over other apps" permission and keeps it out of standby, which Fire OS 8 needs so the Home button works after leaving an app (there is no settings page for this on Fire OS 8).
 - **All tools**: preview, clean up, undo everything, launcher, install an .apk/.apkm from the Mac, uninstall an app, get Projectivy, re-apply after a Fire OS update, switch stick, open log files.
 - **Never touched**: the system home screen, Appstore, settings, remote and Alexa voice search, casting, and `com.amazon.imp` (without it the Fire OS 8 home screen stays black).
 

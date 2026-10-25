@@ -70,6 +70,8 @@ function shell(cmd) {
   }
   if ((m = c.match(/^pm enable --user 0 (\S+)$/))) { s.disabled = s.disabled.filter((p) => p !== m[1]); return `Package ${m[1]} new state: enabled\n`; }
   if ((m = c.match(/^pm grant /))) return '';
+  if ((m = c.match(/^appops set (\S+) (\S+) (\S+)$/))) { s.appops = s.appops || {}; s.appops[`${m[1]}/${m[2]}`] = m[3]; return ''; }
+  if ((m = c.match(/^dumpsys deviceidle whitelist \+(\S+)$/))) { s.whitelist = [...new Set([...(s.whitelist || []), m[1]])]; return `Added: ${m[1]}\n`; }
   if ((m = c.match(/^\[ -f (\S+) \] && echo yes$/))) return s.files[m[1]] !== undefined ? 'yes\n' : '';
   if ((m = c.match(/^cat (\S+)( 2>\/dev\/null)?$/))) return s.files[m[1]] !== undefined ? s.files[m[1]] : '';
   if ((m = c.match(/^mkdir -p (\S+)$/))) return '';

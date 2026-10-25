@@ -143,7 +143,10 @@ test('enableProjectivy keeps other accessibility services and replaces Home on F
   fs.writeFileSync(sf, JSON.stringify(s));
   const r = await stick.enableProjectivy();
   assert.equal(r.ok, true);
-  assert.equal(state().settings['secure/enabled_accessibility_services'], 'com.other/.TalkBack:com.spocky.projengmenu/.service.PAccessibilityService');
+  const after = state();
+  assert.equal(after.settings['secure/enabled_accessibility_services'], 'com.other/.TalkBack:com.spocky.projengmenu/.service.PAccessibilityService');
+  assert.equal(after.appops['com.spocky.projengmenu/SYSTEM_ALERT_WINDOW'], 'allow', 'background launch allowed, so Home works after leaving an app');
+  assert.ok(after.whitelist.includes('com.spocky.projengmenu'), 'kept out of standby');
 });
 
 test('installFile reports an app that needs a newer Android', async () => {

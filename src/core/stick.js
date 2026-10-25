@@ -494,8 +494,19 @@ class Stick {
     const next = [...keep, svc].join(':');
     await this.shell(`settings put secure enabled_accessibility_services '${next}'`);
     await this.shell('settings put secure accessibility_enabled 1');
+    await this.allowBackgroundLaunch(pkg);
     await this.shell(`mkdir -p ${DEVICE_DIR} && echo ${pkg} > ${HOME_CHOICE_FILE}`);
     return (await this.shell('settings get secure enabled_accessibility_services')).includes(svc);
+  }
+
+  // Since Android 10 an app may only bring itself to the front from the
+  // background with the "display over other apps" permission. Fire OS 8 has
+  // no settings page for it, so without this the launcher cannot take over
+  // after you leave an app: Home lands on Amazon's screen. The standby
+  // whitelist keeps the Home-button service from being killed.
+  async allowBackgroundLaunch(pkg) {
+    await this.shell(`appops set ${pkg} SYSTEM_ALERT_WINDOW allow`);
+    await this.shell(`dumpsys deviceidle whitelist +${pkg}`);
   }
 
   async hasProjectivy() { return (await this.getInstalled()).includes(PROJECTIVY_PKG); }
