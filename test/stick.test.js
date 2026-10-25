@@ -44,6 +44,27 @@ test('preview lists ads automatically and asks only about recognisable apps', as
   assert.ok(asked.includes('com.amazon.firetv.youtube'), 'YouTube is a known Amazon app and is offered');
   assert.ok(!asked.includes('com.amazon.somebackgroundservice'), 'unknown Amazon services are never offered');
   assert.ok(!asked.includes('com.amazon.tv.launcher'), 'protected apps are never offered');
+  assert.ok(!asked.includes('com.amazon.imp'), 'com.amazon.imp is protected (black home screen on Fire OS 8)');
+  const by = Object.fromEntries(pv.asked.map((a) => [a.pkg, a]));
+  assert.equal(by['com.amazon.kso.blackbird'].group, 'extended');
+  assert.equal(by['com.amazon.kso.blackbird'].on, true, 'extended ads are ticked by default');
+  assert.equal(by['com.amazon.tahoe'].group, 'optional');
+  assert.equal(by['com.amazon.tahoe'].on, false, 'optional services are unticked by default');
+  assert.equal(by['com.amazon.amazonvideo.livingroom'].group, 'amazon');
+  assert.equal(by['com.netflix.ninja'].group, 'yours');
+});
+
+test('extended packages can be removed, com.amazon.imp never', async () => {
+  const { stick, state } = setup();
+  await stick.open();
+  const r = await stick.cleanup(['com.amazon.kso.blackbird', 'com.amazon.tv.acr', 'com.amazon.tahoe', 'com.amazon.imp']);
+  const s = state();
+  assert.ok(s.disabled.includes('com.amazon.kso.blackbird'));
+  assert.ok(s.disabled.includes('com.amazon.tv.acr'));
+  assert.ok(s.disabled.includes('com.amazon.tahoe'));
+  assert.ok(!s.disabled.includes('com.amazon.imp') && s.installed.includes('com.amazon.imp'));
+  assert.deepEqual(r.skipped, ['com.amazon.imp']);
+  assert.ok(!s.disabled.includes('com.amazon.sneakpeek'), 'unticked extended packages are kept');
 });
 
 test('cleanup disables ads, falls back to uninstall -k, records everything, syncs to the stick', async () => {

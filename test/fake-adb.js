@@ -19,6 +19,8 @@ const DEFAULT = {
     'com.amazon.amazonvideo.livingroom', 'com.amazon.imdb.tv.android.app', 'com.amazon.bueller.music',
     'com.amazon.bueller.photos', 'com.amazon.cloud9',
     'com.netflix.ninja', 'com.amazon.firetv.youtube', 'com.amazon.somebackgroundservice', 'org.xbmc.kodi',
+    // Fire OS 8 extras
+    'com.amazon.imp', 'com.amazon.kso.blackbird', 'com.amazon.sneakpeek', 'com.amazon.tv.acr', 'com.amazon.tahoe', 'com.amazon.tv.alexaalerts',
   ],
   thirdParty: ['com.netflix.ninja', 'com.amazon.firetv.youtube', 'com.amazon.somebackgroundservice', 'org.xbmc.kodi'],
   disabled: [],

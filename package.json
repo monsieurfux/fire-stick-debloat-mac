@@ -1,7 +1,7 @@
 {
   "name": "debloat-for-fire-tv",
   "productName": "Debloat for Fire TV",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Removes ads and tracking from a Fire TV Stick and sets up a clean home screen. Mac app, equivalent to the Windows tool.",
   "license": "MIT",
   "author": "Debloat for Fire TV contributors",

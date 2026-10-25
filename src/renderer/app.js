@@ -148,20 +148,42 @@ function cleanupChecklist(preview) {
   const boxes = [];
   const row = (a) => {
     const cb = h('input', { type: 'checkbox' });
+    cb.checked = Boolean(a.on);
     boxes.push([cb, a.pkg]);
     return h('label', { class: 'check' }, cb, h('span', {}, a.name || a.pkg), a.name ? h('span', { class: 'pkg' }, a.pkg) : null);
   };
-  const amazon = preview.asked.filter((a) => a.amazon);
-  const yours = preview.asked.filter((a) => !a.amazon);
+  const group = (name) => preview.asked.filter((a) => a.group === name);
+  const extended = group('extended');
+  const amazon = group('amazon');
+  const optional = group('optional');
+  const yours = group('yours');
+  // A small "all / none" switch for the two long groups.
+  const toggle = (items) => {
+    const b = btn(t('cleanupToggle'), () => {
+      const all = items.every(([cb]) => cb.checked);
+      items.forEach(([cb]) => { cb.checked = !all; });
+    }, 'small ghost');
+    return h('div', { class: 'actions tight' }, b);
+  };
+  const section = (title, why, items, withToggle) => {
+    const start = boxes.length;
+    const rows = items.map(row);
+    const mine = boxes.slice(start);
+    return h('div', {},
+      h('h3', {}, title),
+      why ? p(why, 'dim') : null,
+      items.length ? h('div', {}, ...rows) : p(t('cleanupNoneAsked'), 'dim'),
+      items.length > 3 && withToggle ? toggle(mine) : null);
+  };
   const el = h('div', {},
     h('h3', {}, t('cleanupAuto')),
     p(t('cleanupAutoWhy'), 'dim'),
     preview.auto.length ? h('div', {}, ...preview.auto.map((pk) => h('div', { class: 'plain' }, pk))) : p(t('cleanupAutoNone'), 'dim'),
-    h('h3', {}, t('cleanupAmazon')),
-    amazon.length ? h('div', {}, ...amazon.map(row)) : p(t('cleanupNoneAsked'), 'dim'),
+    section(t('cleanupExtended'), t('cleanupExtendedWhy'), extended, true),
+    section(t('cleanupAmazon'), null, amazon, false),
     amazon.some((a) => a.pkg === 'com.amazon.bueller.photos') ? p(t('cleanupPhotosWarn'), 'warn') : null,
-    h('h3', {}, t('cleanupYours')),
-    yours.length ? h('div', {}, ...yours.map(row)) : p(t('cleanupNoneAsked'), 'dim'),
+    section(t('cleanupOptional'), t('cleanupOptionalWhy'), optional, true),
+    section(t('cleanupYours'), null, yours, false),
     p(t('cleanupNote'), 'dim'),
   );
   return { el, chosen: () => boxes.filter(([cb]) => cb.checked).map(([, pk]) => pk) };
@@ -483,8 +505,10 @@ const tools = {
       h('h1', {}, t('previewTitle')), p(t('previewBody')),
       h('h3', {}, t('cleanupAuto')),
       r.auto.length ? h('div', {}, ...r.auto.map((pk) => h('div', { class: 'plain' }, pk))) : p(t('cleanupAutoNone'), 'dim'),
+      h('h3', {}, t('cleanupExtended')),
+      ...(r.asked.filter((a) => a.group === 'extended').map((a) => h('div', { class: 'plain' }, a.name ? `${a.name}  (${a.pkg})` : a.pkg))),
       h('h3', {}, t('previewAsked')),
-      r.asked.length ? h('div', {}, ...r.asked.map((a) => h('div', { class: 'plain' }, a.name ? `${a.name}  (${a.pkg})` : a.pkg))) : p(t('cleanupNoneAsked'), 'dim'),
+      r.asked.filter((a) => a.group !== 'extended').length ? h('div', {}, ...r.asked.filter((a) => a.group !== 'extended').map((a) => h('div', { class: 'plain' }, a.name ? `${a.name}  (${a.pkg})` : a.pkg))) : p(t('cleanupNoneAsked'), 'dim'),
       p(t('previewNone'), 'dim'),
     );
   },

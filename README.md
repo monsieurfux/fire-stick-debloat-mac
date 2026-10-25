@@ -12,10 +12,11 @@ Independent open-source project. Not affiliated with, endorsed or sponsored by A
 
 - **Guided setup** (the main screen): welcome → helper tool → prepare the stick → connect → ads in the Fire TV settings → remove ads & apps → choose a home screen → set it up → finish. Every step says what to do on the Mac and what to do on the TV with the remote.
 - **Remove ads and tracking** automatically: sponsored home-screen ads, usage logging, crash reports, Alexa shopping prompts, the Wi-Fi password uploader.
-- **Remove apps you choose**: Amazon apps (Prime Video, Freevee, Music, Photos, Silk) and apps you installed, each with a checkbox.
+- **More ads, promos and telemetry** (ticked by default, each can be unticked): the home-screen ad sync, sponsored previews, advertising ID, shopping, Fire TV Channels and Live tab, promo popups, content recognition, presence sensing and a dozen metrics services. Taken from the reboot-tested [CleanYourTV](https://github.com/Gathin23/cleanyourtv) lists for the Fire TV Stick 4K (2023, Fire OS 8) and 4K Max (2021, Fire OS 7). Packages a stick does not have are skipped.
+- **Remove apps you choose**: Amazon apps (Prime Video, Freevee, Music, Photos, Silk), rarely used Amazon services (Amazon Kids, Luna, tutorials, Ambient mode, Alexa extras) and apps you installed, each with a checkbox.
 - **Home screen**: Projectivy Launcher (recommended), any other launcher via Home on Fire, or keep Amazon's.
 - **All tools**: preview, clean up, undo everything, launcher, install an .apk/.apkm from the Mac, uninstall an app, get Projectivy, re-apply after a Fire OS update, switch stick, open log files.
-- **Never touched**: the system home screen, Appstore, settings, remote and Alexa, casting.
+- **Never touched**: the system home screen, Appstore, settings, remote and Alexa voice search, casting, and `com.amazon.imp` (without it the Fire OS 8 home screen stays black).
 
 ## Download and run
 

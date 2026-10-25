@@ -21,6 +21,73 @@ const ADS_TELEMETRY = [
   'com.amazon.tv.legal.notices', // legal notices viewer
 ];
 
+// More ads, promos and telemetry, mostly Fire OS 7/8 packages. Ticked by
+// default in the cleanup list, but each one can be unticked. From the
+// CleanYourTV lists for the Fire TV Stick 4K (2023, Fire OS 8.1.8.5) and
+// 4K Max (2021, Fire OS 7), which were applied and reboot-tested there.
+const EXTENDED_ADS_TELEMETRY = [
+  'com.amazon.kso.blackbird', // launcher ad sync / bidding (sponsored banner and rows)
+  'com.amazon.sneakpeek', // sponsored "Sneak Peek" previews
+  'com.amazon.hybridadidservice', // advertising ID service
+  'com.amazon.media.recommendations', // recommendation feed
+  'com.amazon.providers.contentsupport', // content support provider
+  'com.amazon.tv.easyupgrade', // "upgrade your Fire TV" promos
+  'com.amazon.shoptv.client', // Amazon Shopping on TV
+  'com.amazon.shoptv.firetv.client',
+  'com.amazon.hedwig', // Fire TV Channels row
+  'com.amazon.tv.livetv', // Live tab and guide (no tuner on a stick)
+  'com.amazon.franktvinput', // live TV input feeding the Live tab
+  'com.amazon.systemnotices', // system notices
+  'com.amazon.tv.releasenotes', // "what's new" popups
+  'com.amazon.uxnotification', // UX notification popups
+  'com.amazon.tv.earlyaccess', // early-access / preview program stub
+  'com.amazon.tv.acr', // automatic content recognition
+  'com.amazon.ftvspatial', // presence / indoor-location sensing
+  'com.amazon.client.metrics.api', // metrics
+  'com.amazon.metrics.api',
+  'com.amazon.neo.minerva', // metrics (Fire OS 8)
+  'com.amazon.neo.minerva.logcat',
+  'com.amazon.tv.fw.metrics', // metrics (Fire OS 6/7)
+  'com.amazon.wirelessmetrics.service',
+  'com.amazon.perfcollection', // performance data collection
+  'com.amazon.perfc',
+  'com.amazon.ceviche', // data collection pipelines
+  'com.amazon.tv.developer.dataservice', // content personalization data for third-party apps
+  'com.amazon.device.telemetry.emitter', // telemetry (Fire OS 8)
+  'com.amazon.livedeviceservice',
+  'com.amazon.privacypassservice', // privacy pass token service
+];
+
+// Amazon services few people use. Unticked by default; you decide.
+const EXTENDED_OPTIONAL = [
+  'com.amazon.tahoe', // Amazon Kids
+  'com.amazon.gamehub', // Luna / Game Hub
+  'com.amazon.minitv.android.app', // miniTV
+  'com.amazon.tv.ftvambient', // Ambient Experience (the plain screensaver stays)
+  'com.amazon.tmm.tutorial', // remote tutorial
+  'com.amazon.storm.lightning.tutorial', // remote app tutorial
+  'com.amazon.tv.website_launcher', // opens websites in Silk
+  'com.amazon.whisperjoin.middleware.v2.np', // setup of other Amazon devices
+  'com.amazon.whisperjoin.middleware.np',
+  'com.amazon.tv.ffsprovisioneeclient',
+  'com.amazon.ods.kindleconnect', // "show on Fire TV" from Echo / Fire tablet
+  'com.amazon.tv.alexaalerts', // Alexa alarms, timers, reminders
+  'com.amazon.tv.alexanotifications',
+  'com.amazon.alexa.externalmediaplayer.fireos', // Alexa music playback
+  'com.amazon.alexamediaplayer.runtime.ftv',
+  'com.amazon.aiondec', // Alexa skill connections
+  'com.amazon.firetv.androidskillconnectioncapability',
+  'com.amazon.spotify.mediabrowserservice', // Spotify for Alexa (the Spotify app is separate)
+  'com.amazon.audiohome', // Alexa Home Theater
+  'com.amazon.whad', // whole-home audio
+  'com.amazon.whasettings',
+  'com.amazon.wha.mediabrowserservice',
+  'com.amazon.aca', // Alexa hints / cues
+  'com.amazon.rtcsessioncontroller', // Alexa calling / Drop In
+  'com.amazon.smarthomemapviewapp', // smart home dashboard
+  'com.amazon.tv.mattercohost', // Matter smart-home controller (Matter casting stays)
+];
+
 // Amazon apps. You're asked about each one.
 const AMAZON_APPS = [
   'com.amazon.amazonvideo.livingroom',
@@ -37,6 +104,8 @@ const PROTECTED = [
   'com.amazon.tv.launcher', 'com.amazon.venezia', 'com.amazon.tv.settings',
   'com.amazon.tv.settings.v2', 'com.amazon.vizzini', 'com.amazon.tcomm',
   'com.amazon.whisperplay', 'com.amazon.device.sync', 'com.android.systemui',
+  // com.amazon.imp: with it disabled, the Fire OS 8 home screen stays black (CleanYourTV report, 4K 2023).
+  'com.amazon.imp',
   'com.spocky.projengmenu', 'com.esaba.downloader', 'io.github.toolicious.homeonfire',
 ];
 
@@ -71,6 +140,63 @@ const NAMES = {
   'com.stremio.one': 'Stremio',
   'com.tiktok.tv': 'TikTok',
   'com.koushikdutta.cast.receiver': 'AllCast Receiver',
+  // extended groups
+  'com.amazon.kso.blackbird': 'Home screen ad sync (sponsored banner and rows)',
+  'com.amazon.sneakpeek': 'Sponsored "Sneak Peek" previews',
+  'com.amazon.hybridadidservice': 'Advertising ID service',
+  'com.amazon.media.recommendations': 'Recommendation feed',
+  'com.amazon.providers.contentsupport': 'Content support provider (promos)',
+  'com.amazon.tv.easyupgrade': '"Upgrade your Fire TV" promos',
+  'com.amazon.shoptv.client': 'Amazon Shopping on TV',
+  'com.amazon.shoptv.firetv.client': 'Amazon Shopping on TV (helper)',
+  'com.amazon.hedwig': 'Fire TV Channels row',
+  'com.amazon.tv.livetv': 'Live tab and guide',
+  'com.amazon.franktvinput': 'Live TV input',
+  'com.amazon.systemnotices': 'System notices',
+  'com.amazon.tv.releasenotes': '"What\'s new" popups',
+  'com.amazon.uxnotification': 'Notification popups',
+  'com.amazon.tv.earlyaccess': 'Early-access program stub',
+  'com.amazon.tv.acr': 'Automatic content recognition',
+  'com.amazon.ftvspatial': 'Presence / location sensing',
+  'com.amazon.client.metrics.api': 'Metrics',
+  'com.amazon.metrics.api': 'Metrics',
+  'com.amazon.neo.minerva': 'Metrics (Minerva)',
+  'com.amazon.neo.minerva.logcat': 'Metrics (Minerva log upload)',
+  'com.amazon.tv.fw.metrics': 'Metrics (firmware)',
+  'com.amazon.wirelessmetrics.service': 'Wi-Fi metrics',
+  'com.amazon.perfcollection': 'Performance data collection',
+  'com.amazon.perfc': 'Performance data collection',
+  'com.amazon.ceviche': 'Data collection pipelines',
+  'com.amazon.tv.developer.dataservice': 'Personalization data for third-party apps',
+  'com.amazon.device.telemetry.emitter': 'Telemetry emitter',
+  'com.amazon.livedeviceservice': 'Live device service (telemetry)',
+  'com.amazon.privacypassservice': 'Privacy pass token service',
+  'com.amazon.tahoe': 'Amazon Kids',
+  'com.amazon.gamehub': 'Luna / Game Hub',
+  'com.amazon.minitv.android.app': 'miniTV',
+  'com.amazon.tv.ftvambient': 'Ambient Experience (art screensaver)',
+  'com.amazon.tmm.tutorial': 'Remote tutorial',
+  'com.amazon.storm.lightning.tutorial': 'Remote app tutorial',
+  'com.amazon.tv.website_launcher': 'Website launcher (opens sites in Silk)',
+  'com.amazon.whisperjoin.middleware.v2.np': 'Setup of other Amazon devices',
+  'com.amazon.whisperjoin.middleware.np': 'Setup of other Amazon devices',
+  'com.amazon.tv.ffsprovisioneeclient': 'Setup of other Amazon devices (client)',
+  'com.amazon.ods.kindleconnect': '"Show on Fire TV" from Echo / Fire tablet',
+  'com.amazon.tv.alexaalerts': 'Alexa alarms, timers, reminders',
+  'com.amazon.tv.alexanotifications': 'Alexa notifications',
+  'com.amazon.alexa.externalmediaplayer.fireos': 'Alexa music playback',
+  'com.amazon.alexamediaplayer.runtime.ftv': 'Alexa music playback (runtime)',
+  'com.amazon.aiondec': 'Alexa skill connections',
+  'com.amazon.firetv.androidskillconnectioncapability': 'Alexa skill connections (Fire OS 8)',
+  'com.amazon.spotify.mediabrowserservice': 'Spotify for Alexa (the Spotify app is separate)',
+  'com.amazon.audiohome': 'Alexa Home Theater',
+  'com.amazon.whad': 'Whole-home audio',
+  'com.amazon.whasettings': 'Whole-home audio (settings)',
+  'com.amazon.wha.mediabrowserservice': 'Whole-home audio (service)',
+  'com.amazon.aca': 'Alexa hints and cues',
+  'com.amazon.rtcsessioncontroller': 'Alexa calling / Drop In',
+  'com.amazon.smarthomemapviewapp': 'Smart home dashboard',
+  'com.amazon.tv.mattercohost': 'Matter smart-home controller',
 };
 
 // Folders some apps leave behind in shared storage after they're uninstalled.
@@ -166,7 +292,8 @@ class Stick {
   // you're only asked about apps you'd recognise.
   async getYourApps() {
     return packagesFrom(await this.shell('pm list packages -3'))
-      .filter((p) => !PROTECTED.includes(p) && !AMAZON_APPS.includes(p) && !ADS_TELEMETRY.includes(p))
+      .filter((p) => !PROTECTED.includes(p) && !AMAZON_APPS.includes(p) && !ADS_TELEMETRY.includes(p)
+        && !EXTENDED_ADS_TELEMETRY.includes(p) && !EXTENDED_OPTIONAL.includes(p))
       .filter((p) => !p.startsWith('com.amazon.') || Object.hasOwn(NAMES, p))
       .sort();
   }
@@ -177,12 +304,18 @@ class Stick {
     return (await this.getInstalled()).filter((p) => !off.has(p));
   }
 
+  // auto: removed without asking. asked: one tick-box each, grouped:
+  // 'extended' (ticked by default), 'amazon', 'optional' and 'yours' (unticked).
   async preview() {
     const active = new Set(await this.getActiveApps());
     const auto = ADS_TELEMETRY.filter((p) => active.has(p));
-    const asked = [...AMAZON_APPS, ...(await this.getYourApps())]
-      .filter((p) => active.has(p))
-      .map((p) => ({ pkg: p, name: NAMES[p] || null, amazon: AMAZON_APPS.includes(p) }));
+    const entry = (group, on) => (p) => ({ pkg: p, name: NAMES[p] || null, group, on });
+    const asked = [
+      ...EXTENDED_ADS_TELEMETRY.map(entry('extended', true)),
+      ...AMAZON_APPS.map(entry('amazon', false)),
+      ...EXTENDED_OPTIONAL.map(entry('optional', false)),
+      ...(await this.getYourApps()).map(entry('yours', false)),
+    ].filter((a) => active.has(a.pkg));
     return { auto, asked };
   }
 
@@ -292,7 +425,7 @@ class Stick {
     const act = async (p) => { results[await this.disablePkg(p) === 'removed' ? 'removed' : 'failed'].push(p); };
     this.log('Removing ads and tracking...', 'info');
     for (const p of ADS_TELEMETRY) if (active.has(p)) await act(p);
-    const allowed = new Set([...AMAZON_APPS, ...(await this.getYourApps())]);
+    const allowed = new Set([...EXTENDED_ADS_TELEMETRY, ...AMAZON_APPS, ...EXTENDED_OPTIONAL, ...(await this.getYourApps())]);
     this.log('Removing the apps you chose...', 'info');
     for (const p of chosen) {
       if (!PKG_RE.test(p) || !allowed.has(p)) { results.skipped.push(p); continue; }
@@ -472,6 +605,6 @@ function walk(dir) {
 
 module.exports = {
   Stick, nameOf,
-  ADS_TELEMETRY, AMAZON_APPS, PROTECTED, NAMES,
+  ADS_TELEMETRY, EXTENDED_ADS_TELEMETRY, EXTENDED_OPTIONAL, AMAZON_APPS, PROTECTED, NAMES,
   PROJECTIVY_PKG, HOME_ON_FIRE_PKG, HOME_ON_FIRE_APK, PROJECTIVY_PAGE,
 };
