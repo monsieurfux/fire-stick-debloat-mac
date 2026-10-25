@@ -209,6 +209,7 @@ const wizard = {
       p(t('welcomeSafe'), 'ok'),
       p(t('welcomeNotSupported'), 'dim'),
       h('div', { class: 'actions' }, btn(t('welcomeStart'), nextStep, 'primary')),
+      h('p', { class: 'dim legal' }, t('welcomeDisclaimer')),
     );
   },
 
@@ -656,7 +657,7 @@ async function init() {
   $('btnLogs').addEventListener('click', () => { logLine({ message: t('logsHint', { dir: info.logDir }), level: 'dim' }); api.openLogs(); });
   api.onLog(logLine);
 
-  logLine({ message: `Fire Stick Debloat ${info.version}`, level: 'dim' });
+  logLine({ message: `Debloat for Fire TV ${info.version}`, level: 'dim' });
   updateBadge();
   render();
 }

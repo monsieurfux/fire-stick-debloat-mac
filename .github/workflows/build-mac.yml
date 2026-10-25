@@ -40,7 +40,7 @@ jobs:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
       - uses: actions/upload-artifact@v4
         with:
-          name: Fire-Stick-Debloat-Mac
+          name: Debloat-for-Fire-TV-Mac
           path: |
             dist/*.dmg
             dist/*.zip

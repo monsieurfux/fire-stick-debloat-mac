@@ -48,7 +48,7 @@ function createWindow() {
     height: 720,
     minWidth: 760,
     minHeight: 560,
-    title: 'Fire Stick Debloat',
+    title: 'Debloat for Fire TV',
     titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'default',
     backgroundColor: '#111318',
     webPreferences: {

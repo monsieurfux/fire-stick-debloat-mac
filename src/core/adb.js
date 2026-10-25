@@ -45,7 +45,7 @@ function findAdb(dataDir) {
 function download(url, dest, onProgress) {
   return new Promise((resolve, reject) => {
     const go = (u, hops) => {
-      const req = https.get(u, { headers: { 'User-Agent': 'Fire-Stick-Debloat-Mac' }, timeout: 30000 }, (res) => {
+      const req = https.get(u, { headers: { 'User-Agent': 'Debloat-for-Fire-TV-Mac' }, timeout: 30000 }, (res) => {
         if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
           res.resume();
           if (hops >= 5) return reject(new Error('too many redirects'));

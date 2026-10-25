@@ -120,6 +120,7 @@ details ol { padding-left: 20px; }
 .check.top input { margin-top: 4px; }
 .check .pkg { color: var(--dim); font-size: 12px; margin-left: auto; }
 .plain { padding: 6px 12px; color: var(--dim); font-size: 13px; }
+.legal { font-size: 12px; margin-top: 28px; border-top: 1px solid var(--border); padding-top: 12px; }
 
 .steps { counter-reset: s; }
 .step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }

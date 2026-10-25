@@ -4,7 +4,7 @@
 
 window.STRINGS = {
   en: {
-    appTitle: 'Fire Stick Debloat',
+    appTitle: 'Debloat for Fire TV',
     modeWizard: 'Guided setup',
     modeTools: 'All tools',
     yes: 'Yes', no: 'No', ok: 'OK', cancel: 'Cancel', next: 'Next', back: 'Back', skip: 'Skip this step', done: 'Done',
@@ -31,6 +31,7 @@ window.STRINGS = {
     welcomeSafe: 'Apps are switched off, never deleted. Everything can be undone with one click under "All tools". Nothing on the stick is modified until you say so.',
     welcomeNotSupported: 'Not supported: the newest sticks with Vega OS (for example the Fire TV Stick 4K Select). Classic Fire OS sticks (Lite, HD, 4K, 4K Max) are fine.',
     welcomeStart: 'Start',
+    welcomeDisclaimer: 'Independent open-source project. Not affiliated with, endorsed or sponsored by Amazon. Fire TV and Fire TV Stick are trademarks of Amazon.com, Inc. or its affiliates. Use at your own risk.',
 
     // adb
     adbTitle: 'A small helper from Google is needed',
@@ -224,7 +225,7 @@ window.STRINGS = {
   },
 
   de: {
-    appTitle: 'Fire Stick Debloat',
+    appTitle: 'Debloat for Fire TV',
     modeWizard: 'Geführte Einrichtung',
     modeTools: 'Alle Werkzeuge',
     yes: 'Ja', no: 'Nein', ok: 'OK', cancel: 'Abbrechen', next: 'Weiter', back: 'Zurück', skip: 'Schritt überspringen', done: 'Fertig',
@@ -249,6 +250,7 @@ window.STRINGS = {
     welcomeSafe: 'Apps werden nur deaktiviert, nie gelöscht. Alles lässt sich unter „Alle Werkzeuge“ mit einem Klick rückgängig machen. Am Stick wird nichts verändert, bevor du es bestätigst.',
     welcomeNotSupported: 'Nicht unterstützt: die neuesten Sticks mit Vega OS (zum Beispiel Fire TV Stick 4K Select). Klassische Fire-OS-Sticks (Lite, HD, 4K, 4K Max) funktionieren.',
     welcomeStart: 'Los geht\'s',
+    welcomeDisclaimer: 'Unabhängiges Open-Source-Projekt. Nicht mit Amazon verbunden, nicht von Amazon unterstützt oder gesponsert. Fire TV und Fire TV Stick sind Marken von Amazon.com, Inc. oder verbundenen Unternehmen. Nutzung auf eigene Gefahr.',
 
     adbTitle: 'Ein kleines Hilfsprogramm von Google wird benötigt',
     adbBody: 'Die App spricht über „adb“ mit dem Fire Stick, ein kostenloses Werkzeug aus Googles Android Platform-Tools. Googles Lizenz erlaubt nicht, es in dieser App mitzuliefern, daher wird es einmalig (wenige MB) in den Ordner dieser App heruntergeladen.',

@@ -1,10 +1,10 @@
-# Fire Stick Debloat for Mac
+# Debloat for Fire TV (Mac)
 
 A Mac app that removes ads and tracking from a Fire TV Stick, lets you keep only the apps you use, and sets up a clean, fast home screen (Projectivy Launcher). It walks you through everything step by step and tells you what to do on the TV at the same time.
 
 It is the Mac equivalent of the Windows tool [cmeraspro-dev/Fire-Stick-Debloat](https://github.com/cmeraspro-dev/Fire-Stick-Debloat): same package lists, same protection rules, same per-stick undo list. Apps are disabled, never deleted. Everything can be undone with one click.
 
-Not affiliated with Amazon. Use at your own risk.
+Independent open-source project. Not affiliated with, endorsed or sponsored by Amazon. Fire TV and Fire TV Stick are trademarks of Amazon.com, Inc. or its affiliates, used here only to describe which devices the app works with. The app changes system settings on your own device through Amazon's official ADB developer interface; use it at your own risk. If something goes wrong, a factory reset of the stick is the fallback.
 
 *Deutsch: Die App ist zweisprachig (Deutsch/Englisch) und wählt die Sprache automatisch. Anleitung auf Deutsch weiter unten.*
 
@@ -45,7 +45,7 @@ npm start
 ## Build the .dmg yourself
 
 ```
-npm run dist        # creates dist/Fire Stick Debloat-<version>-universal.dmg and .zip
+npm run dist        # creates dist/Debloat for Fire TV-<version>-universal.dmg and .zip
 ```
 
 Building needs a Mac. The GitHub workflow in `.github/workflows/build-mac.yml` does the same on a macOS runner and attaches the files to a release when you push a tag like `v1.0.0`.
@@ -61,7 +61,7 @@ The end-to-end test needs Playwright (`npm i -D playwright`) and, on Linux, `xvf
 
 ## Where things are kept
 
-- App data (adb, per-stick lists of removed apps, logs): `~/Library/Application Support/Fire Stick Debloat/`
+- App data (adb, per-stick lists of removed apps, logs): `~/Library/Application Support/Debloat for Fire TV/`
 - `removed-<serial>.txt`: what was removed on that stick, with a backup copy on the stick at `/sdcard/fire-stick-debloat/removed.txt`, so Undo and Re-apply work from any Mac.
 - `logs/run-<date>.txt`: the newest 10 runs, for bug reports.
 

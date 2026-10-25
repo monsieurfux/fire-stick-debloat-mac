@@ -1,10 +1,10 @@
 {
-  "name": "fire-stick-debloat-mac",
-  "productName": "Fire Stick Debloat",
+  "name": "debloat-for-fire-tv",
+  "productName": "Debloat for Fire TV",
   "version": "1.0.0",
   "description": "Removes ads and tracking from a Fire TV Stick and sets up a clean home screen. Mac app, equivalent to the Windows tool.",
   "license": "MIT",
-  "author": "Fire Stick Debloat contributors",
+  "author": "Debloat for Fire TV contributors",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
@@ -17,8 +17,8 @@
     "electron-builder": "^26.0.0"
   },
   "build": {
-    "appId": "dev.firestickdebloat.mac",
-    "productName": "Fire Stick Debloat",
+    "appId": "dev.debloatforfiretv.mac",
+    "productName": "Debloat for Fire TV",
     "publish": null,
     "files": [
       "src/**/*",
