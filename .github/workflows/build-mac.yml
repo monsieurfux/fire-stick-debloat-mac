@@ -1,0 +1,53 @@
+# Builds the Mac app (.dmg and .zip) on GitHub's macOS runners and attaches
+# it to a release whenever a tag like v1.0.0 is pushed. Also runs the tests
+# on every push and pull request.
+name: Build Mac app
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  build:
+    needs: test
+    runs-on: macos-latest
+    permissions:
+      contents: write # to attach the files to the release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run dist
+        env:
+          # Unsigned build: no Apple developer account needed.
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Fire-Stick-Debloat-Mac
+          path: |
+            dist/*.dmg
+            dist/*.zip
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.dmg
+            dist/*.zip
