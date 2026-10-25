@@ -19,7 +19,7 @@ Independent open-source project. Not affiliated with, endorsed or sponsored by A
 
 ## Download and run
 
-1. Get `Fire-Stick-Debloat-<version>-universal.dmg` from the Releases page (built automatically by GitHub Actions on every tagged release), open it and drag the app to Applications.
+1. Download the newest `Debloat.for.Fire.TV-<version>-universal.dmg` from the [Releases page](https://github.com/monsieurfux/fire-stick-debloat-mac/releases/latest) (built automatically by GitHub Actions on every tagged release), open it and drag the app to Applications. The universal build runs on Intel and Apple Silicon Macs.
 2. The app is not signed with an Apple developer certificate. The first time, **right-click the app → Open → Open** (or allow it under System Settings → Privacy & Security).
 3. Follow the steps in the app.
 
@@ -36,7 +36,7 @@ On first run the app offers to download Google's free Android platform-tools (ad
 ## Run from source
 
 ```
-git clone <this repo>
+git clone https://github.com/monsieurfux/fire-stick-debloat-mac.git
 cd fire-stick-debloat-mac
 npm install
 npm start
@@ -80,7 +80,7 @@ The end-to-end test needs Playwright (`npm i -D playwright`) and, on Linux, `xvf
 
 **Was du brauchst:** den Mac und den Fire Stick im selben WLAN, die Fernbedienung, etwa 20 Minuten.
 
-1. `.dmg` von der Releases-Seite laden, öffnen, App in „Programme“ ziehen.
+1. `.dmg` von der [Releases-Seite](https://github.com/monsieurfux/fire-stick-debloat-mac/releases/latest) laden, öffnen, App in „Programme“ ziehen.
 2. Beim ersten Start **Rechtsklick auf die App → Öffnen → Öffnen** (die App ist nicht von Apple signiert).
 3. Der App folgen. Sie führt dich durch:
    - Hilfsprogramm (adb) einmalig herunterladen,
